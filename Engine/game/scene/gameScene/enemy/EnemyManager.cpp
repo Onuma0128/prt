@@ -18,6 +18,9 @@ void EnemyManager::Init()
 		}
 		enemys_.push_back(std::move(enemy));
 	}
+
+
+	global_->AddValue<float>("Enemy", "thetaSpeed", 60.0f);
 }
 
 void EnemyManager::Update()

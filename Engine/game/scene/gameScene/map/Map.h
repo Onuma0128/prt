@@ -3,6 +3,8 @@
 #include <memory>
 
 #include "Sprite.h"
+
+#include "GlobalVariables.h"
 #include "Input.h"
 
 
@@ -26,6 +28,8 @@ private:
 
 private:
 	Input* input;
+
+	GlobalVariables* global_ = GlobalVariables::GetInstance();
 
 	std::unique_ptr<Sprite> sprite_ = nullptr;
 

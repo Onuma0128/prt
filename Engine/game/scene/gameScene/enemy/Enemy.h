@@ -42,5 +42,7 @@ private:
 
 	// 落下しているかどうか
 	bool isFalling_ = false;
+
+	float saveMapSize_ = 0.0f;
 };
 

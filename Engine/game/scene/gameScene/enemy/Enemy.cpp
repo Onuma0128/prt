@@ -39,16 +39,20 @@ void Enemy::Collision()
 	Vector2 mapCenter = map_->GetSprite()->GetPosition();
 	Vector2 enemyPos = sprite_->GetPosition();
 
-	float length = std::sqrt(std::pow(enemyPos.x - mapCenter.x, 2) + std::pow(enemyPos.y - mapCenter.y, 2));
+	float length = std::sqrtf(std::powf(enemyPos.x - mapCenter.x, 2) + std::powf(enemyPos.y - mapCenter.y, 2));
 
 	// length以下なら当たっている
-	if (length < (map_->GetSprite()->GetSize().x / 2.0f)) {
+	if (length <= (map_->GetSprite()->GetSize().x / 2.0f)) {
 		Vector2 velocity = Normalize(enemyPos - mapCenter);
 		enemyPos += velocity;
 		sprite_->SetPosition(enemyPos);
 		isFalling_ = true;
 	} else {
 		isFalling_ = false;
+		if (saveMapSize_ < map_->GetSprite()->GetSize().x / 2.0f) {
+			isFalling_ = true;
+		}
+		saveMapSize_ = map_->GetSprite()->GetSize().x / 2.0f;
 	}
 }
 

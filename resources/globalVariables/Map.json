@@ -1,0 +1,10 @@
+{
+    "Map": [
+        {
+            "SpaceScele": 50.0
+        },
+        {
+            "ConstantSpaceScele": 1.0
+        }
+    ]
+}
