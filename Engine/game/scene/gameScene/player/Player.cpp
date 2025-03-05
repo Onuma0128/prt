@@ -121,7 +121,7 @@ void Player::ShotBullet()
 
 
 			// 弾の速度
-			Vector2 velocityB = Normalize(Vector2(input->GetMousePosX(), input->GetMousePosY()) - sprite_->GetPosition());
+			Vector2 velocityB = Normalize(Vector2(static_cast<float>(input->GetMousePosX()), static_cast<float>(input->GetMousePosY())) - sprite_->GetPosition());
 
 			velocityB = velocityB * kBulletSpeed;
 
