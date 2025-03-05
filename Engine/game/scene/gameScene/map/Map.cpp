@@ -10,6 +10,10 @@ void Map::Init()
 	sprite_->SetPosition(Vector2{ 640.0f,360.0f });
 	sprite_->SetAnchorPoint(Vector2{ 0.5f,0.5f });
 	sprite_->SetSize(Vector2{ size_,size_ });
+
+
+	global_->AddValue<float>("Map", "SpaceScele", 1.0f);
+	global_->AddValue<float>("Map", "ConstantSpaceScele", 1.0f);
 }
 
 void Map::Update()
@@ -32,7 +36,10 @@ void Map::Draw()
 void Map::Scale()
 {
 	if (input->PushKey(DIK_SPACE)) {
-		size_ += 1.0f;
+		if (!isPushKey_) {
+			size_ += global_->GetValue<float>("Map", "SpaceScele");
+		}
+		size_ += global_->GetValue<float>("Map", "ConstantSpaceScele");
 		isPushKey_ = true;
 	}else{
 		isPushKey_ = false;

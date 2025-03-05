@@ -46,7 +46,10 @@ void EnemyMoveState::VelocityRotate()
 
 void EnemyMoveState::Move()
 {
-	theta_ += 1.0f / 180.0f;
+	float sizeX = enemy_->GetMap()->GetSprite()->GetSize().x;
+	float thetaSpeed = 0.003f * sizeX + 0.1f;
+
+	theta_ += 1.0f / (global_->GetValue<float>("Enemy", "thetaSpeed") * thetaSpeed);
 
 	Vector2 position{};
 	Vector2 center = enemy_->GetMap()->GetSprite()->GetPosition();

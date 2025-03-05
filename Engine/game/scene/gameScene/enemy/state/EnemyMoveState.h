@@ -2,6 +2,8 @@
 
 #include "EnemyBaseState.h"
 
+#include "GlobalVariables.h"
+
 class EnemyMoveState :public EnemyBaseState
 {
 public:
@@ -25,6 +27,8 @@ private:
 	void VelocityRotate();
 
 private:
+
+	GlobalVariables* global_ = GlobalVariables::GetInstance();
 
 	// 敵の回転アングル
 	float angle_ = 0.0f;

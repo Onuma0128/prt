@@ -5,6 +5,8 @@
 
 #include "Enemy.h"
 
+#include "GlobalVariables.h"
+
 class Map;
 
 class EnemyManager
@@ -20,6 +22,8 @@ public:
 	void SetMap(Map* map) { map_ = map; }
 
 private:
+
+	GlobalVariables* global_ = GlobalVariables::GetInstance();
 
 	Map* map_ = nullptr;
 
