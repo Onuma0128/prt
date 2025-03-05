@@ -114,6 +114,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Engine\game\scene\gameScene\enemy\state\EnemyMoveState.cpp" />
+    <ClCompile Include="Engine\game\scene\gameScene\enemy\state\EnemyBaseState.cpp" />
+    <ClCompile Include="Engine\game\scene\gameScene\enemy\EnemyManager.cpp" />
+    <ClCompile Include="Engine\game\scene\gameScene\enemy\Enemy.cpp" />
     <ClCompile Include="Engine\engine\base\object\model\AnimationBase.cpp" />
     <ClCompile Include="Engine\engine\3d\Animation.cpp" />
     <ClCompile Include="Engine\engine\base\object\light\type\DirectionalLight.cpp" />
@@ -173,6 +177,10 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\game\scene\gameScene\map\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Engine\game\scene\gameScene\enemy\state\EnemyMoveState.h" />
+    <ClInclude Include="Engine\game\scene\gameScene\enemy\state\EnemyBaseState.h" />
+    <ClInclude Include="Engine\game\scene\gameScene\enemy\EnemyManager.h" />
+    <ClInclude Include="Engine\game\scene\gameScene\enemy\Enemy.h" />
     <ClInclude Include="Engine\engine\base\object\model\AnimationBase.h" />
     <ClInclude Include="Engine\engine\3d\Animation.h" />
     <ClInclude Include="Engine\engine\base\object\light\type\DirectionalLight.h" />

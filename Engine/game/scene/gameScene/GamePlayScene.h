@@ -14,6 +14,7 @@
 
 #include "map/Map.h"
 #include "player/Player.h"
+#include "enemy/EnemyManager.h"
 
 class GamePlayScene : public BaseScene
 {
@@ -34,6 +35,8 @@ private:
 	std::unique_ptr<Map> map_ = nullptr;
 
 	std::unique_ptr<Player> player_ = nullptr;
+
+	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
 
 };
 
