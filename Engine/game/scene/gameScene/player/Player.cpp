@@ -31,7 +31,8 @@ void Player::Update()
 	ImGui::InputFloat("rotate", &angle_);
 	ImGui::End();
 
-	
+	// 弾
+	BulletUpdate();
 	
 	// マップとの当たり判定
 	Vector2 mapCenter = map_->GetSprite()->GetPosition();
@@ -61,6 +62,11 @@ void Player::Update()
 
 void Player::Draw()
 {
+	for (const auto& bullet : bullets_) {
+		bullet->Draw();
+	}
+
+
 	sprite_->Draw();
 }
 
@@ -96,6 +102,55 @@ void Player::UpdateNormal()
 {
 	normal_ = Normalize(sprite_->GetPosition() - map_->GetSprite()->GetPosition());
 	angle_ = std::atan2(-normal_.x, normal_.y);
+}
+
+void Player::ShotBullet()
+{
+	if (input->PushMouseButton(0)) {
+		isClick = true;
+	}
+	else {
+		isClick = false;
+	}
+
+
+	if (isClick) {
+		clicktimer -= 1.0f / 60.0f;
+		if (clicktimer <= 0) {
+			clicktimer = shotInterval;
+
+
+			// 弾の速度
+			Vector2 velocityB = Normalize(Vector2(input->GetMousePosX(), input->GetMousePosY()) - sprite_->GetPosition());
+
+			velocityB = velocityB * kBulletSpeed;
+
+			// 弾を生成し、初期化
+			auto newBullet = std::make_unique<PlayerBullet>();
+			newBullet->Initialize(sprite_->GetPosition(), velocityB);
+			newBullet->SetMap(map_);
+
+			// 弾を登録する
+			bullets_.push_back(std::move(newBullet));
+		}
+	}
+	else {
+		clicktimer = 0;
+	}
+
+}
+
+void Player::BulletUpdate()
+{
+	ShotBullet();
+
+	// 弾の更新
+	for (const auto& bullet : bullets_) {
+		bullet->Update();
+	}
+
+	// デスフラグが立った弾を削除
+	bullets_.remove_if([](const std::unique_ptr<PlayerBullet>& bullet) { return bullet->IsDead(); });
 }
 
 
