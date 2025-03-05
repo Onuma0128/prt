@@ -12,6 +12,8 @@
 #include "gameScene/test/TestObject.h"
 #include "Animation.h"
 
+#include "map/Map.h"
+
 class GamePlayScene : public BaseScene
 {
 public:
@@ -27,6 +29,8 @@ public:
 private:
 
 	std::unique_ptr<TestObject> testObj_ = nullptr;
+
+	std::unique_ptr<Map> map_ = nullptr;
 
 };
 

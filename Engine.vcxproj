@@ -169,6 +169,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClCompile Include="Engine\game\scene\gameScene\test\TestObject.cpp" />
     <ClCompile Include="Engine\engine\base\object\light\type\PointLight.cpp" />
     <ClCompile Include="Engine\engine\base\object\light\type\SpotLight.cpp" />
+    <ClCompile Include="Engine\game\scene\gameScene\map\Map.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\engine\base\object\model\AnimationBase.h" />
@@ -231,6 +232,7 @@ copy "$(WindowsSdkDir)bin\$(TargetPlatformVersion)\x64\dxil.dll" "$(TargetDir)dx
     <ClInclude Include="Engine\game\scene\gameScene\test\TestObject.h" />
     <ClInclude Include="Engine\engine\base\object\light\type\PointLight.h" />
     <ClInclude Include="Engine\engine\base\object\light\type\SpotLight.h" />
+    <ClInclude Include="Engine\game\scene\gameScene\map\Map.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="resources\shaders\BasicGeometryShader.hlsl">
