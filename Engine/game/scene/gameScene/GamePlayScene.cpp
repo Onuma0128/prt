@@ -10,6 +10,8 @@
 
 void GamePlayScene::Initialize()
 {
+	// 追加
+
 	testObj_ = std::make_unique<TestObject>();
 	testObj_->Init();
 
