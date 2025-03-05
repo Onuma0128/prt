@@ -14,6 +14,8 @@ public:
 
 	void Draw();
 
+	Sprite* GetSprite() { return sprite_.get(); }
+
 private:
 
 	std::unique_ptr<Sprite> sprite_ = nullptr;
