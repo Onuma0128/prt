@@ -1,6 +1,7 @@
 #include "EnemyManager.h"
 
 #include "gameScene/map/Map.h"
+#include "gameScene/player/playerBullet.h"
 
 void EnemyManager::Init()
 {
@@ -16,6 +17,8 @@ void EnemyManager::Init()
 		} else {
 			enemy->Init(Vector2{ 680,360 });
 		}
+		//enemy->SetPlayerBullet(playerBullet_);
+
 		enemys_.push_back(std::move(enemy));
 	}
 
@@ -30,6 +33,9 @@ void EnemyManager::Update()
 	for (auto& enemy : enemys_) {
 		enemy->Update();
 	}
+
+	// デスフラグが立った弾を削除
+	enemys_.remove_if([](const std::unique_ptr<Enemy>& bullet) { return bullet->IsDead(); });
 }
 
 void EnemyManager::Draw()

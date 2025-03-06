@@ -17,6 +17,10 @@ public:
 	void Draw();
 
 	void SetMap(Map* map) { map_ = map; }
+
+	std::list<std::unique_ptr<PlayerBullet>>& GetBullets() { return bullets_; }
+
+
 private:
 
 

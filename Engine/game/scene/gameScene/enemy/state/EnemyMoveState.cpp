@@ -15,7 +15,7 @@ void EnemyMoveState::Initialize()
 	Vector2 enemyPos = enemy_->GetSprite()->GetPosition();
 	Vector2 velocity = enemyPos - mapCenter;
 	float angle = std::atan2(-velocity.x, velocity.y);
-	theta_ = (std::numbers::pi / 2.0f) + angle;
+	theta_ = (static_cast<float>(std::numbers::pi) / 2.0f) + angle;
 }
 
 void EnemyMoveState::Update()

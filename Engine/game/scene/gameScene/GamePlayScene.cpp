@@ -42,10 +42,12 @@ void GamePlayScene::Update()
 	player_->Update();
 
 	enemyManager_->Update();
+
+	Coll();
 }
 
 void GamePlayScene::Draw()
-{	
+{
 	testObj_->Draw();
 
 	map_->Draw();
@@ -53,4 +55,27 @@ void GamePlayScene::Draw()
 	player_->Draw();
 
 	enemyManager_->Draw();
+}
+
+void GamePlayScene::Coll()
+{
+	for (auto& enemy : enemyManager_->GetEnemys()) {
+		for (auto& bullet : player_->GetBullets()) {
+
+			// マップとの当たり判定
+			Vector2 bulletPos = bullet->GetSprite()->GetPosition();
+			Vector2 enemyPos = enemy->GetSprite()->GetPosition();
+			float enemySize = enemy->GetSprite()->GetSize().x /2 ;
+
+
+			float length = std::sqrtf(std::powf(enemyPos.x - bulletPos.x, 2) + std::powf(enemyPos.y - bulletPos.y, 2));
+
+			if (length <= enemySize + bullet->GetRad()) {
+				bullet->SetDead();
+				enemy->SetDead();
+			}
+		}
+	}
+
+
 }

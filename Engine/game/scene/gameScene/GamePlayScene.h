@@ -28,6 +28,9 @@ public:
 
 	void Draw() override;
 
+
+	void Coll();
+
 private:
 
 	std::unique_ptr<TestObject> testObj_ = nullptr;
@@ -37,6 +40,8 @@ private:
 	std::unique_ptr<Player> player_ = nullptr;
 
 	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
+
+
 
 };
 
