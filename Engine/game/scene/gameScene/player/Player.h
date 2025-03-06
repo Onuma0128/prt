@@ -20,7 +20,9 @@ public:
 
 	std::list<std::unique_ptr<PlayerBullet>>& GetBullets() { return bullets_; }
 
+	Sprite* GetSprite() { return sprite_.get(); }
 
+	float GetRad() const { return kRad_; }
 private:
 
 
@@ -63,5 +65,7 @@ private:
 
 	const float kBulletSpeed = 2.0f;
 
+	// 半径
+	float kRad_ = 10.0f;
 };
 
