@@ -43,7 +43,9 @@ private:
 	// サイズ
 	const float maxSize_ = 400;
 	const float minSize_ = 200;
-	float size_ = 400;
+	Vector2 size_ = { 400,400 };
+
+	float thetaSize_ = 0.0f;
 
 
 

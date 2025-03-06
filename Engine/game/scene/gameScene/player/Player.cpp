@@ -23,12 +23,14 @@ void Player::Update()
 	// 移動処理
 	Move();
 
+	Vector2 stick = { input->GetGamepadLeftStickX(),input->GetGamepadLeftStickY() };
 
 	UpdateNormal();
 
 	ImGui::Begin("player");
 	ImGui::InputFloat2("normal", &normal_.x);
 	ImGui::InputFloat("rotate", &angle_);
+	ImGui::InputFloat2("left_stick", &stick.x);
 	ImGui::End();
 
 	// 弾
@@ -75,21 +77,48 @@ void Player::Draw()
 /// </summary>
 void Player::Move()
 {
-	
-
-	// 移動処理
-	if (input->PushKey(DIK_A)) {
-		theta += thetaSpeed;
-	}
-	if (input->PushKey(DIK_D)) {
-		theta -= thetaSpeed;
-	}
-	
-	//theta += 1.0f / 180.0f;
-
-	Vector2 position{};
+	// マップの情報を取得
 	Vector2 center = map_->GetSprite()->GetPosition();
 	float radius = map_->GetSprite()->GetSize().x / 2.0f;
+
+	// スティックを取得
+	Vector2 stick = { input->GetGamepadLeftStickX(),input->GetGamepadLeftStickY() };
+
+	// スティックが倒されているなら
+	if (stick.Length() != 0.0f) {
+
+		// スティックからthetaを計算してLerpさせる
+		float stickTheta = std::atan2(-stick.y, stick.x);
+		theta = theta + (stickTheta - theta) * stickT_;
+
+		// スティックが押された瞬間
+		if (stickT_ == 0.0f) {
+			stickLength_ = Vector2{
+				.x = std::cos(stickTheta) * radius + center.x,
+				.y = std::sin(stickTheta) * radius + center.y
+			}.Length();
+		}
+
+		// tを加算
+		stickT_ += 1.0f / stickLength_;
+		if (stickT_ > 1.0f) {
+			stickT_ = 1.0f;
+		}
+
+	} else {
+		stickT_ = 0.0f;
+
+		// 移動処理
+		if (input->PushKey(DIK_A)) {
+			theta += thetaSpeed;
+		}
+		if (input->PushKey(DIK_D)) {
+			theta -= thetaSpeed;
+		}
+	}
+
+	// 座標を更新
+	Vector2 position{};
 	position.x = center.x + radius * std::cos(theta);
 	position.y = center.y + radius * std::sin(theta);
 

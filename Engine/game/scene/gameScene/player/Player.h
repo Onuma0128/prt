@@ -53,6 +53,10 @@ private:
 
 	Vector2 normal_{};
 
+	// スティック用
+	float stickT_ = 0.0f;
+	float stickLength_ = 0.0f;
+
 
 	float theta = 0;
 	float thetaSpeed = 0.01f;
