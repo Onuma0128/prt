@@ -6,15 +6,13 @@ void EnemyManager::Init()
 {
 
 	// 初期化
-	for (int i = 0; i < 3; ++i) {
+	for (int i = 0; i < 2; ++i) {
 		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>();
 		enemy->SetMap(map_);
 		if (i == 0) {
-			enemy->Init(Vector2{ 600,360 });
+			enemy->Init(Vector2{ 600,320 });
 		} else if (i == 1) {
 			enemy->Init(Vector2{ 640,400 });
-		} else {
-			enemy->Init(Vector2{ 680,360 });
 		}
 		enemys_.push_back(std::move(enemy));
 	}

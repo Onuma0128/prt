@@ -2,8 +2,11 @@
 
 #include <numbers>
 
+#include "Input.h"
+
 #include "gameScene/map/Map.h"
 #include "gameScene/enemy/Enemy.h"
+#include "EnemyAttackState.h"
 
 #include "Vector2.h"
 
@@ -54,8 +57,8 @@ void EnemyMoveState::Move()
 	Vector2 position{};
 	Vector2 center = enemy_->GetMap()->GetSprite()->GetPosition();
 	float radius = enemy_->GetMap()->GetSprite()->GetSize().x / 2.0f;
-	position.x = center.x + radius * std::cos(theta_);
-	position.y = center.y + radius * std::sin(theta_);
+	position.x = center.x + radius * std::cosf(theta_);
+	position.y = center.y + radius * std::sinf(theta_);
 
 	enemy_->GetSprite()->SetPosition(position);
 }

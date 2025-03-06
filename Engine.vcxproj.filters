@@ -201,6 +201,9 @@
     <ClCompile Include="Engine\game\scene\gameScene\player\playerBullet.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Engine\game\scene\gameScene\enemy\state\EnemyAttackState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine\engine\2d\LoadTexture.h">
@@ -402,6 +405,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Engine\game\scene\gameScene\player\playerBullet.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine\game\scene\gameScene\enemy\state\EnemyAttackState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

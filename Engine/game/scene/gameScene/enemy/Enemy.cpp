@@ -1,6 +1,7 @@
 #include "Enemy.h"
 
 #include "state/EnemyMoveState.h"
+#include "state/EnemyAttackState.h"
 
 void Enemy::Init(const Vector2& position)
 {
@@ -20,6 +21,11 @@ void Enemy::Init(const Vector2& position)
 void Enemy::Update()
 {
 	Collision();
+
+	if (isAttackTime_ >= 1.0f) {
+		ChengeState(std::make_unique<EnemyAttackState>(this));
+		return;
+	}
 
 	state_->Update();
 
@@ -44,14 +50,21 @@ void Enemy::Collision()
 	// length以下なら当たっている
 	if (length <= (map_->GetSprite()->GetSize().x / 2.0f)) {
 		Vector2 velocity = Normalize(enemyPos - mapCenter);
-		enemyPos += velocity;
+		enemyPos += velocity * 0.3f;
 		sprite_->SetPosition(enemyPos);
 		isFalling_ = true;
 	} else {
+		isAttackTime_ += 1.0f / 180.0f;
 		isFalling_ = false;
+
 		if (saveMapSize_ < map_->GetSprite()->GetSize().x / 2.0f) {
 			isFalling_ = true;
 		}
+
+		Vector2 velocity = Normalize(enemyPos - mapCenter);
+		enemyPos -= velocity * 2.0f;
+		sprite_->SetPosition(enemyPos);
+
 		saveMapSize_ = map_->GetSprite()->GetSize().x / 2.0f;
 	}
 }

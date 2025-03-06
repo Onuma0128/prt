@@ -30,6 +30,8 @@ public:
 
 	bool GetIsFalling()const { return isFalling_; }
 
+	void SetIsAttackTime(float time) { isAttackTime_ = time; }
+
 private:
 
 	Map* map_ = nullptr;
@@ -42,6 +44,9 @@ private:
 
 	// 落下しているかどうか
 	bool isFalling_ = false;
+
+	// 攻撃タイマー
+	float isAttackTime_ = 0.0f;
 
 	float saveMapSize_ = 0.0f;
 };
