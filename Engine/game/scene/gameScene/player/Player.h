@@ -59,7 +59,7 @@ private:
 
 
 	float theta = 0;
-	float thetaSpeed = 0.01f;
+	//float thetaSpeed = 0.01f;
 	float angle_ = 0.0f; // 角
 	float rotateSpeed_ = 1.0f; // 角速度
 

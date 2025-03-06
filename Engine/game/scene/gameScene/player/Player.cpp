@@ -108,12 +108,15 @@ void Player::Move()
 	} else {
 		stickT_ = 0.0f;
 
+		float sizeX = map_->GetSprite()->GetSize().x;
+		float thetaSpeed = 0.003f * sizeX + 0.1f;
+
 		// 移動処理
 		if (input->PushKey(DIK_A)) {
-			theta += thetaSpeed;
+			theta += 1.0f / (100.0f * thetaSpeed);
 		}
 		if (input->PushKey(DIK_D)) {
-			theta -= thetaSpeed;
+			theta -= 1.0f / (100.0f * thetaSpeed);
 		}
 	}
 
