@@ -1,12 +1,14 @@
 #pragma once
 
 #include <memory>
+#include <list>
 
 #include "Sprite.h"
 
 #include "state/EnemyBaseState.h"
 #include "gameScene/map/Map.h"
 
+class PlayerBullet;
 class Enemy
 {
 public:
@@ -30,12 +32,19 @@ public:
 
 	bool GetIsFalling()const { return isFalling_; }
 
+	bool IsDead() const { return isDead_; };
+
+	void SetDead() { isDead_ = true; };
+
+	float GetRad() const { return kRad_; }
+
 	void SetIsAttackTime(float time) { isAttackTime_ = time; }
 
 private:
 
 	Map* map_ = nullptr;
 
+	
 	// 敵のSprite
 	std::unique_ptr<Sprite> sprite_ = nullptr;
 
@@ -49,5 +58,9 @@ private:
 	float isAttackTime_ = 0.0f;
 
 	float saveMapSize_ = 0.0f;
+
+	float kRad_ = 20.0f;
+
+	bool isDead_ = false;
 };
 

@@ -75,3 +75,5 @@ void Enemy::ChengeState(std::unique_ptr<EnemyBaseState> newState)
 	state_ = std::move(newState);
 	state_->Initialize();
 }
+
+

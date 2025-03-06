@@ -150,7 +150,9 @@ void Player::BulletUpdate()
 	}
 
 	// デスフラグが立った弾を削除
-	bullets_.remove_if([](const std::unique_ptr<PlayerBullet>& bullet) { return bullet->IsDead(); });
+	bullets_.remove_if([](const std::unique_ptr<PlayerBullet>& bullet) { 
+		return bullet->IsDead(); 
+		});
 }
 
 

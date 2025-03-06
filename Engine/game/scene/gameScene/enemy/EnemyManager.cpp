@@ -14,6 +14,7 @@ void EnemyManager::Init()
 		} else if (i == 1) {
 			enemy->Init(Vector2{ 640,400 });
 		}
+
 		enemys_.push_back(std::move(enemy));
 	}
 
@@ -28,6 +29,9 @@ void EnemyManager::Update()
 	for (auto& enemy : enemys_) {
 		enemy->Update();
 	}
+
+	// デスフラグが立った弾を削除
+	enemys_.remove_if([](const std::unique_ptr<Enemy>& bullet) { return bullet->IsDead(); });
 }
 
 void EnemyManager::Draw()
