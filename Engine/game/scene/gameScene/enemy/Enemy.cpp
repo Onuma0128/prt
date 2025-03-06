@@ -1,7 +1,6 @@
 #include "Enemy.h"
 
 #include "state/EnemyMoveState.h"
-#include "gameScene/player/playerBullet.h"
 
 void Enemy::Init(const Vector2& position)
 {
@@ -65,24 +64,4 @@ void Enemy::ChengeState(std::unique_ptr<EnemyBaseState> newState)
 	state_->Initialize();
 }
 
-void Enemy::BulletCollision()
-{
-	/*for (int i = 0; i < playerBullet_->size(); i++) {
-		playerBullet_[i]
-	}*/
 
-
-	//for (auto& bullet : playerBullet_) {
-	//	// マップとの当たり判定
-	//	Vector2 bulletPos = bullet.GetSprite()->GetPosition();
-	//	Vector2 enemyPos = sprite_->GetPosition();
-	//	float enemySize = sprite_->GetSize().x;
-
-
-	//	float length = std::sqrtf(std::powf(enemyPos.x - bulletPos.x, 2) + std::powf(enemyPos.y - bulletPos.y, 2));
-	//	
-	//	if (length <= enemySize + bullet.GetRad()) {
-	//		isDead_ = true;
-	//	}
-	//}
-}

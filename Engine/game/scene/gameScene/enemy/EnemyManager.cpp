@@ -1,7 +1,6 @@
 #include "EnemyManager.h"
 
 #include "gameScene/map/Map.h"
-#include "gameScene/player/playerBullet.h"
 
 void EnemyManager::Init()
 {
@@ -17,7 +16,6 @@ void EnemyManager::Init()
 		} else {
 			enemy->Init(Vector2{ 680,360 });
 		}
-		//enemy->SetPlayerBullet(playerBullet_);
 
 		enemys_.push_back(std::move(enemy));
 	}

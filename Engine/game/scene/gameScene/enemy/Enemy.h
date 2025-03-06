@@ -32,10 +32,6 @@ public:
 
 	bool GetIsFalling()const { return isFalling_; }
 
-	//void SetPlayerBullet(std::list <PlayerBullet>* playerBullet) { playerBullet_ = *playerBullet; }
-
-	void BulletCollision();
-
 	bool IsDead() const { return isDead_; };
 
 	void SetDead() { isDead_ = true; };
@@ -46,8 +42,7 @@ private:
 
 	Map* map_ = nullptr;
 
-	//std::list <PlayerBullet> playerBullet_;
-
+	
 	// 敵のSprite
 	std::unique_ptr<Sprite> sprite_ = nullptr;
 
