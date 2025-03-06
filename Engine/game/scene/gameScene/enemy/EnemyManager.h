@@ -27,6 +27,12 @@ public:
 	std::list<std::unique_ptr<Enemy>>& GetEnemys() { return enemys_; }
 
 
+	void PopEnemy(Vector2 popPos);
+	
+	void RondomPopEnemy();
+	
+	void AllDeathEnemy();
+
 private:
 
 	GlobalVariables* global_ = GlobalVariables::GetInstance();

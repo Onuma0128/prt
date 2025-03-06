@@ -11,6 +11,8 @@
 void GamePlayScene::Initialize()
 {
 	// 追加
+	input_ = Input::GetInstance();
+
 
 	testObj_ = std::make_unique<TestObject>();
 	testObj_->Init();
@@ -35,6 +37,11 @@ void GamePlayScene::Finalize()
 
 void GamePlayScene::Update()
 {
+
+	Pop();
+
+
+
 	testObj_->Update();
 
 	map_->Update();
@@ -70,7 +77,7 @@ void GamePlayScene::Coll()
 
 			// マップとの当たり判定
 			Vector2 bulletPos = bullet->GetSprite()->GetPosition();
-			
+
 			length = std::sqrtf(std::powf(enemyPos.x - bulletPos.x, 2) + std::powf(enemyPos.y - bulletPos.y, 2));
 
 			// 衝突判定
@@ -94,4 +101,22 @@ void GamePlayScene::Coll()
 
 
 
+}
+
+void GamePlayScene::Pop()
+{
+#ifdef _DEBUG
+	ImGui::Begin("popEnemy");
+	ImGui::DragFloat2("popPos", &popPos_.x, 0.1f);
+	if (ImGui::Button("pop"))
+		enemyManager_->PopEnemy(popPos_);
+	ImGui::End();
+	if (input_->TriggerKey(DIK_E)) {
+		enemyManager_->RondomPopEnemy();
+	}
+	if (input_->TriggerKey(DIK_R)) {
+		enemyManager_->AllDeathEnemy();
+	}
+
+#endif // _DEBUG
 }

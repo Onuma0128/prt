@@ -31,7 +31,11 @@ public:
 
 	void Coll();
 
+	void Pop();
+
 private:
+	Input* input_;
+
 
 	std::unique_ptr<TestObject> testObj_ = nullptr;
 
@@ -41,7 +45,8 @@ private:
 
 	std::unique_ptr<EnemyManager> enemyManager_ = nullptr;
 
-
+	// 敵出現位置
+	Vector2 popPos_ = { 640,320 };
 
 };
 
