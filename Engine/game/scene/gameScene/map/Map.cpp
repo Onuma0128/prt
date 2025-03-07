@@ -39,11 +39,14 @@ void Map::Scale()
 {
 	if (input->PushKey(DIK_SPACE)) {
 		if (!isPushKey_) {
+			thetaSize_ = 0.0f;
+		}
+		/*if (!isPushKey_) {
 			size_.x += global_->GetValue<float>("Map", "SpaceScele");
 			size_.y += global_->GetValue<float>("Map", "SpaceScele");
 		}
 		size_.x += global_->GetValue<float>("Map", "ConstantSpaceScele");
-		size_.y += global_->GetValue<float>("Map", "ConstantSpaceScele");
+		size_.y += global_->GetValue<float>("Map", "ConstantSpaceScele");*/
 		isPushKey_ = true;
 
 		if (thetaSize_ < std::numbers::pi * 2.0f) {
@@ -52,8 +55,8 @@ void Map::Scale()
 				thetaSize_ = std::numbers::pi * 2.0f;
 			}
 		}
-		size_.x += std::sin(thetaSize_) * 10.0f;
-		size_.y += -std::sin(thetaSize_) * 10.0f;
+		size_.x = std::sin(thetaSize_) * 10.0f + 250.0f;
+		size_.y = -std::sin(thetaSize_) * 10.0f + 250.0f;
 
 	}else{
 		if (isPushKey_) {
@@ -62,10 +65,19 @@ void Map::Scale()
 			} else {
 				size_.y = size_.x;
 			}
+			thetaSize_ = 0.0f;
 		}
 
 		isPushKey_ = false;
-		thetaSize_ = 0.0f;
+
+		if (thetaSize_ < std::numbers::pi * 2.0f) {
+			thetaSize_ += std::numbers::pi * 2.0f / 10.0f;
+			if (thetaSize_ > std::numbers::pi * 2.0f) {
+				thetaSize_ = std::numbers::pi * 2.0f;
+			}
+		}
+		size_.x = std::sin(thetaSize_) * 10.0f + 400.0f;
+		size_.y = -std::sin(thetaSize_) * 10.0f + 400.0f;
 	}
 }
 
@@ -80,12 +92,12 @@ void Map::Shrink()
 		
 	}
 
-	if (size_.x >= maxSize_ || size_.y >= maxSize_) {
+	/*if (size_.x >= maxSize_ || size_.y >= maxSize_) {
 		size_.x = maxSize_;
 		size_.y = maxSize_;
 	}
 	if (size_.x <= minSize_ || size_.y <= minSize_) {
 		size_.x = minSize_;
 		size_.y = minSize_;
-	}
+	}*/
 }
