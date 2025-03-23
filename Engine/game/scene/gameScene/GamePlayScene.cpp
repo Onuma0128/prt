@@ -98,7 +98,7 @@ void GamePlayScene::Coll()
 			if (length <= enemySize + player_->GetRad()) {
 				enemy->SetIsAlive(EnemyIsAlive::OnThePlayer);
 				// 敵とプレイヤーが触れていてボタンを押したら敵は弾になる
-				if (input_->TriggerKey(DIK_LSHIFT)) {
+				if (input_->TriggerKey(DIK_SPACE)) {
 					enemy->SetIsAlive(EnemyIsAlive::Bullet);
 				}
 			} else {
