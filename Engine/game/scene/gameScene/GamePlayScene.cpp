@@ -83,7 +83,7 @@ void GamePlayScene::Coll()
 
 			// 衝突判定
 			if (length <= enemySize + bullet->GetRad()) {
-				bullet->SetDead(); // 弾死亡
+				//bullet->SetDead(); // 弾死亡
 				enemy->SetDead();  // 敵死亡
 			}
 		}

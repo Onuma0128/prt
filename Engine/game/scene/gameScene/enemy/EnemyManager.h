@@ -8,6 +8,11 @@
 
 #include "GlobalVariables.h"
 
+struct EnemyPoison {
+	std::unique_ptr<Sprite> sprite;
+	Vector2 velocity;
+	bool isActive;
+};
 
 class PlayerBullet;
 class Map;
@@ -46,4 +51,6 @@ private:
 	// 敵を管理する配列
 	std::list<std::unique_ptr<Enemy>> enemys_;
 
+	std::list<std::unique_ptr<EnemyPoison>> enemyPoisons_;
+	size_t poisonCount_;
 };

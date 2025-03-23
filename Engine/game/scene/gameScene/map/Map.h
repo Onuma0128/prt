@@ -20,6 +20,9 @@ public:
 
 	Sprite* GetSprite() { return sprite_.get(); }
 
+	bool GetIsMaxPoison()const { return isMaxPoison_; }
+	void SetIsMaxPoison(bool flag) { isMaxPoison_ = flag; }
+
 private:
 
 	void Scale();
@@ -35,7 +38,7 @@ private:
 
 	// スペースキーを押しているのか
 	bool isPushKey_ = false;
-
+	bool isMaxPoison_ = false;
 	
 	// 縮む速度
 	float shrinkSpeed_ = 1.0f;

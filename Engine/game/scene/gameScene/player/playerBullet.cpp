@@ -38,7 +38,7 @@ void PlayerBullet::Update()
 	float mapRadius = map_->GetSprite()->GetSize().x / 2.0f;
 
 	// length以下なら当たっている
-	if (length <= (mapRadius + 10 )) {
+	if (length <= (mapRadius + 10)) {
 	}
 	else {
 		isDead_ = true;

@@ -2,6 +2,9 @@
     "Enemy": [
         {
             "thetaSpeed": 100.0
+        },
+        {
+            "poisonCount": 5
         }
     ]
 }

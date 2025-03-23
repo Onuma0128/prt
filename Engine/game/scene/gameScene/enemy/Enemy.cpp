@@ -119,6 +119,10 @@ void Enemy::Collision()
 		colliderSprite_->SetPosition(enemyColliderPos);
 
 		saveMapSize_ = map_->GetSprite()->GetSize().x / 2.0f;
+		if ((isAlive_ == EnemyIsAlive::Active || isAlive_ == EnemyIsAlive::OnThePlayer) &&
+			!map_->GetIsMaxPoison()) {
+			poisonTime_ += 1.0f / 300.0f;
+		}
 	}
 }
 

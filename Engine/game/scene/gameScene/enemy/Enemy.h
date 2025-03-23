@@ -58,6 +58,9 @@ public:
 	EnemyIsAlive GetIsAlive() const { return isAlive_; }
 	void SetIsAlive(EnemyIsAlive isAlive) { isAlive_ = isAlive; }
 
+	float GetPoisonTime()const { return poisonTime_; }
+	void SetPoisonTime() { poisonTime_ = 0.0f; }
+
 private:
 
 	void OnThePlayerVelocity();
@@ -87,5 +90,7 @@ private:
 	Vector2 bulletVelocity_{};
 
 	bool isDead_ = false;
+
+	float poisonTime_ = 0.0f;
 };
 

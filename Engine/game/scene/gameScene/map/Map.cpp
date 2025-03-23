@@ -37,20 +37,31 @@ void Map::Draw()
 
 void Map::Scale()
 {
-	if (input->PushKey(DIK_SPACE)) {
+	if (isMaxPoison_) {
 		if (!isPushKey_) {
 			thetaSize_ = 0.0f;
 		}
 		isPushKey_ = true;
 
-		if (thetaSize_ < std::numbers::pi * 2.0f) {
-			thetaSize_ += std::numbers::pi * 2.0f / 10.0f;
-			if (thetaSize_ > std::numbers::pi * 2.0f) {
-				thetaSize_ = std::numbers::pi * 2.0f;
+		if (thetaSize_ < 1.0f) {
+			thetaSize_ += 1.0f / 180.0f;
+			if (thetaSize_ >= 1.0f) {
+				thetaSize_ = 1.0f;
 			}
 		}
-		size_.x = std::sin(thetaSize_) * 10.0f + 250.0f;
-		size_.y = -std::sin(thetaSize_) * 10.0f + 250.0f;
+		if (size_.x > 250.0f) {
+			size_.x = thetaSize_ * -150.0f + 400.0f;
+			size_.y = thetaSize_ * -150.0f + 400.0f;
+			if (size_.x <= 250.0f) {
+				size_.x = 250.0f;
+				size_.y = 250.0f;
+			}
+		} else {
+			thetaSize_ += 1.0f / 120.0f;
+			if (thetaSize_ >= 2.0f) {
+				isMaxPoison_ = false;
+			}
+		}
 
 	}else{
 		if (isPushKey_) {
