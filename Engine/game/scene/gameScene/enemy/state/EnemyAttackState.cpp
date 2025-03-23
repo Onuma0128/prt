@@ -59,7 +59,6 @@ void EnemyAttackState::Draw()
 
 void EnemyAttackState::Finalize()
 {
-	enemy_->SetIsAttackTime(0.0f);
 }
 
 void EnemyAttackState::Attack()

@@ -15,7 +15,12 @@ void Player::Init()
 	sprite_->SetAnchorPoint(Vector2{ 0.5f,1.0f });
 	sprite_->SetSize(Vector2{ 40.0f,40.0f });
 	
-
+	colliderSprite_ = std::make_unique<Sprite>();
+	colliderSprite_->Initialize("texture/map.png");
+	colliderSprite_->SetPosition(position_);
+	colliderSprite_->SetAnchorPoint(Vector2{ 0.5f,0.5f });
+	colliderSprite_->SetSize(Vector2{ 40.0f,40.0f });
+	colliderSprite_->SetColor(Vector4{ 1.0f,0.0f,0.0f,0.5f });
 }
 
 void Player::Update()
@@ -60,6 +65,9 @@ void Player::Update()
 	// 最後にセットして更新
 	sprite_->SetRotation(angle_);
 	sprite_->Update();
+
+	colliderSprite_->SetPosition(sprite_->GetPosition());
+	colliderSprite_->Update();
 }
 
 void Player::Draw()
@@ -70,6 +78,7 @@ void Player::Draw()
 
 
 	sprite_->Draw();
+	colliderSprite_->Draw();
 }
 
 /// <summary>
@@ -148,9 +157,9 @@ void Player::ShotBullet()
 
 	if (isClick) {
 		clicktimer -= 1.0f / 60.0f;
-		if (clicktimer <= 0) {
+		if (clicktimer <= 0 && bulletCount_ > 0) {
 			clicktimer = shotInterval;
-
+			--bulletCount_;
 
 			// 弾の速度
 			Vector2 velocityB = Normalize(Vector2(static_cast<float>(input->GetMousePosX()), static_cast<float>(input->GetMousePosY())) - sprite_->GetPosition());

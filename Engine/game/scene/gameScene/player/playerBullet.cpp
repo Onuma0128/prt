@@ -1,15 +1,28 @@
 #include "playerBullet.h"
+
+#include <numbers>
+
 #include "gameScene/map/Map.h"
 
 void PlayerBullet::Initialize(const Vector2& position, const Vector2& Velocity)
 {
 	sprite_ = std::make_unique<Sprite>();
-	sprite_->Initialize("texture/bullet.png");
+	sprite_->Initialize("texture/enemy.png");
 	position_ = position;
 	sprite_->SetPosition(position_);
 	sprite_->SetAnchorPoint(Vector2{ 0.5f,0.5f });
-	sprite_->SetSize(Vector2{ 20.0f,20.0f });
+	sprite_->SetSize(Vector2{ 96.0f,16.0f });
 	velocity_ = Velocity;
+
+	float angle = std::atan2(-velocity_.x, velocity_.y);
+	sprite_->SetRotation(angle);
+
+	colliderSprite_ = std::make_unique<Sprite>();
+	colliderSprite_->Initialize("texture/map.png");
+	colliderSprite_->SetPosition(position_);
+	colliderSprite_->SetAnchorPoint(Vector2{ 0.5f,0.5f });
+	colliderSprite_->SetSize(Vector2{ 64.0f,64.0f });
+	colliderSprite_->SetColor(Vector4{ 1.0f,0.0f,0.0f,0.5f });
 }
 
 void PlayerBullet::Update()
@@ -42,9 +55,14 @@ void PlayerBullet::Update()
 
 	sprite_->SetPosition(position_);
 	sprite_->Update();
+
+	colliderSprite_->SetPosition(sprite_->GetPosition());
+	colliderSprite_->Update();
 }
 
 void PlayerBullet::Draw()
 {
 	sprite_->Draw();
+
+	colliderSprite_->Draw();
 }

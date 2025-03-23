@@ -28,6 +28,7 @@ void GamePlayScene::Initialize()
 	// 敵を生成
 	enemyManager_ = std::make_unique<EnemyManager>();
 	enemyManager_->SetMap(map_.get());
+	enemyManager_->SetPlayer(player_.get());
 	enemyManager_->Init();
 }
 
@@ -93,10 +94,24 @@ void GamePlayScene::Coll()
 		length = std::sqrtf(std::powf(enemyPos.x - playerPos.x, 2) + std::powf(enemyPos.y - playerPos.y, 2));
 
 		// 衝突判定
-		if (length <= enemySize + player_->GetRad()) {
+		if (enemy->GetIsAlive() != EnemyIsAlive::Bullet && enemy->GetIsAlive() != EnemyIsAlive::Dead) {
+			if (length <= enemySize + player_->GetRad()) {
+				enemy->SetIsAlive(EnemyIsAlive::OnThePlayer);
+				// 敵とプレイヤーが触れていてボタンを押したら敵は弾になる
+				if (input_->TriggerKey(DIK_LSHIFT)) {
+					enemy->SetIsAlive(EnemyIsAlive::Bullet);
+				}
+			} else {
+				enemy->SetIsAlive(EnemyIsAlive::Active);
+			}
 		}
-
-
+		// 敵が死んで弾状態になっているなら
+		if (enemy->GetIsAlive() == EnemyIsAlive::Dead) {
+			if (length <= enemySize + player_->GetRad()) {
+				player_->SetBullet();
+				enemy->SetDead();  // 敵死亡
+			}
+		}
 	}
 
 

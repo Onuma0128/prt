@@ -23,6 +23,9 @@ public:
 	Sprite* GetSprite() { return sprite_.get(); }
 
 	float GetRad() const { return kRad_; }
+
+	void SetBullet() { ++bulletCount_; }
+
 private:
 
 
@@ -42,9 +45,12 @@ private:
 
 	// スプライト
 	std::unique_ptr<Sprite> sprite_ = nullptr;
+	std::unique_ptr<Sprite> colliderSprite_ = nullptr;
 
 	// 弾
 	std::list<std::unique_ptr<PlayerBullet>> bullets_;
+	// 弾数用変数
+	int bulletCount_ = 0;
 	
 	// マップ
 	Map* map_ = nullptr;

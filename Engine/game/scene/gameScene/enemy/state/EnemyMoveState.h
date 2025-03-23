@@ -22,6 +22,7 @@ private:
 
 	// 円を回る移動処理
 	void Move();
+	void ColliderMove();
 
 	// マップの中心からのVelocityを取った回転の更新処理
 	void VelocityRotate();

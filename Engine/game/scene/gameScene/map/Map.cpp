@@ -41,12 +41,6 @@ void Map::Scale()
 		if (!isPushKey_) {
 			thetaSize_ = 0.0f;
 		}
-		/*if (!isPushKey_) {
-			size_.x += global_->GetValue<float>("Map", "SpaceScele");
-			size_.y += global_->GetValue<float>("Map", "SpaceScele");
-		}
-		size_.x += global_->GetValue<float>("Map", "ConstantSpaceScele");
-		size_.y += global_->GetValue<float>("Map", "ConstantSpaceScele");*/
 		isPushKey_ = true;
 
 		if (thetaSize_ < std::numbers::pi * 2.0f) {
@@ -87,17 +81,6 @@ void Map::Shrink()
 		if (size_.x > minSize_ || size_.y > minSize_) {
 			size_.x -= shrinkSpeed_;
 			size_.y -= shrinkSpeed_;
-		}
-		
-		
+		}	
 	}
-
-	/*if (size_.x >= maxSize_ || size_.y >= maxSize_) {
-		size_.x = maxSize_;
-		size_.y = maxSize_;
-	}
-	if (size_.x <= minSize_ || size_.y <= minSize_) {
-		size_.x = minSize_;
-		size_.y = minSize_;
-	}*/
 }

@@ -34,6 +34,7 @@ public:
 
 private:
 	std::unique_ptr<Sprite> sprite_ = nullptr;
+	std::unique_ptr<Sprite> colliderSprite_ = nullptr;
 
 	//
 	Map* map_;
@@ -51,7 +52,7 @@ private:
 	bool isDead_ = false;
 
 	// 半径
-	const float kRad = 5.0f;
+	const float kRad = 32.0f;
 
 	Vector2 position_;
 };

@@ -1,5 +1,6 @@
 #include "EnemyManager.h"
 
+#include "gameScene/player/Player.h"
 #include "gameScene/map/Map.h"
 
 void EnemyManager::Init()
@@ -9,6 +10,7 @@ void EnemyManager::Init()
 	for (int i = 0; i < 2; ++i) {
 		std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>();
 		enemy->SetMap(map_);
+		enemy->SetPlayer(player_);
 		if (i == 0) {
 			enemy->Init(Vector2{ 600,320 });
 		}
@@ -48,6 +50,7 @@ void EnemyManager::PopEnemy(Vector2 popPos)
 {
 	std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>();
 	enemy->SetMap(map_);
+	enemy->SetPlayer(player_);
 	enemy->Init(Vector2{ 600,320 });
 	enemys_.push_back(std::move(enemy));
 }
@@ -64,6 +67,7 @@ void EnemyManager::RondomPopEnemy()
 
 	std::unique_ptr<Enemy> enemy = std::make_unique<Enemy>();
 	enemy->SetMap(map_);
+	enemy->SetPlayer(player_);
 	enemy->Init(mapPos + popRand);
 	enemys_.push_back(std::move(enemy));
 }
